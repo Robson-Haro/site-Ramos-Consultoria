@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Robson Ramos | Consultoria em RH, Seleção &amp; Desenvolvimento</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{ margin:0; background:#0a0c10; color:#f3f1ea; font-family:'Manrope',sans-serif; }
+  a{ color:inherit; text-decoration:none; }
+  a:hover{ color:#e3cd9a; }
+  ul{ list-style:none; margin:0; padding:0; }
+  img{ max-width:100%; display:block; }
+  @keyframes rr-progress{ from{ width:0%; } to{ width:100%; } }
+  @keyframes rr-kenburns{ 0%{ transform:scale(1); } 100%{ transform:scale(1.07); } }
+  @keyframes rr-twinkle{ 0%,100%{ opacity:0; transform:scale(0.4);} 50%{ opacity:1; transform:scale(1.1);} }
+
+  .page-bg{
+    background:radial-gradient(ellipse 70% 45% at 15% 0%, rgba(201,166,107,0.07), transparent 60%), #0a0c10;
+    min-height:100vh; overflow-x:hidden;
+  }
+
+  /* -------- glass -------- */
+  .glass{
+    position:relative;
+    background:linear-gradient(150deg, rgba(255,255,255,0.09), rgba(255,255,255,0.015));
+    backdrop-filter:blur(26px) saturate(170%);
+    -webkit-backdrop-filter:blur(26px) saturate(170%);
+    border:1px solid rgba(255,255,255,0.15);
+    border-radius:22px;
+    box-shadow:0 22px 60px rgba(0,0,0,0.42), inset 0 1px 1px rgba(255,255,255,0.22);
+    overflow:hidden;
+  }
+  .glass::before{
+    content:''; position:absolute; top:0; left:-25%; width:55%; height:100%;
+    background:linear-gradient(115deg, rgba(255,255,255,0.12) 0%, transparent 55%);
+    pointer-events:none;
+  }
+  .glass:hover{ border-color:rgba(201,166,107,0.4); }
+
+  .glass-chip{
+    padding:7px 14px; border-radius:999px;
+    background:rgba(201,166,107,0.1); border:1px solid rgba(201,166,107,0.28);
+    font-size:0.8rem; color:#e5e7ec;
+    backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);
+  }
+  .glass-card-outline{
+    padding:26px; border:1px solid rgba(255,255,255,0.12); border-radius:16px;
+    background:linear-gradient(150deg, rgba(255,255,255,0.05), rgba(255,255,255,0.01));
+    backdrop-filter:blur(16px) saturate(150%);
+    -webkit-backdrop-filter:blur(16px) saturate(150%);
+    box-shadow:inset 0 1px 1px rgba(255,255,255,0.14);
+    transition:border-color .25s ease, transform .25s ease;
+  }
+  .glass-card-outline:hover{ border-color:rgba(201,166,107,0.4); transform:translateY(-2px); }
+
+  .gold-btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:12px 24px; border-radius:999px;
+    background:linear-gradient(135deg, #e3cd9a, #c9a66b 60%, #8f6f34);
+    color:#0a0c10; font-weight:700; font-size:0.86rem;
+    border:1px solid rgba(255,255,255,0.3);
+    box-shadow:0 8px 22px rgba(201,166,107,0.3), inset 0 1px 0 rgba(255,255,255,0.5);
+    cursor:pointer; transition:transform .22s ease, box-shadow .22s ease;
+    white-space:nowrap;
+  }
+  .gold-btn:hover{ transform:translateY(-2px); color:#0a0c10; box-shadow:0 12px 30px rgba(201,166,107,0.45), inset 0 1px 0 rgba(255,255,255,0.5); }
+
+  .ghost-btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:11px 22px; border-radius:999px;
+    border:1px solid rgba(255,255,255,0.2); font-weight:600; font-size:0.85rem; color:#f3f1ea;
+    background:rgba(255,255,255,0.04);
+    backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
+    cursor:pointer; transition:background .2s ease, border-color .2s ease;
+  }
+  .ghost-btn:hover{ background:rgba(255,255,255,0.1); border-color:rgba(201,166,107,0.45); }
+
+  .eyebrow{ text-transform:uppercase; letter-spacing:0.16em; font-size:0.72rem; font-weight:700; color:#c9a66b; }
+  .serif{ font-family:'Cormorant Garamond',serif; }
+
+  section{ scroll-margin-top:96px; }
+
+  /* -------- header -------- */
+  header{
+    position:sticky; top:0; left:0; right:0; z-index:200;
+    padding:14px max(20px, calc((100vw - 1240px)/2));
+    display:flex; align-items:center; justify-content:space-between; gap:16px;
+    background:rgba(10,12,16,0.55);
+    backdrop-filter:blur(24px) saturate(170%);
+    -webkit-backdrop-filter:blur(24px) saturate(170%);
+    border-bottom:1px solid rgba(255,255,255,0.08);
+  }
+  .brand{ display:flex; align-items:center; gap:12px; cursor:pointer; }
+  .logo-wrap{ position:relative; width:46px; height:46px; }
+  .logo-wrap img{ width:46px; height:46px; object-fit:cover; border-radius:50%; border:1px solid rgba(255,255,255,0.18); }
+  .sparkle{
+    position:absolute; border-radius:50%;
+    background:radial-gradient(circle, #fff6d8 0%, #e3cd9a 45%, transparent 70%);
+    mix-blend-mode:screen; pointer-events:none;
+    animation:rr-twinkle 2.6s ease-in-out infinite;
+  }
+  .brand-name{ font-family:'Cormorant Garamond',serif; font-size:1.2rem; font-weight:600; letter-spacing:0.01em; }
+
+  .desktop-nav{ display:flex; align-items:center; gap:28px; }
+  .desktop-nav ul{ display:flex; gap:6px; align-items:center; }
+  .nav-link{
+    font-size:0.85rem; white-space:nowrap; padding:7px 13px; border-radius:999px; display:inline-block;
+    color:#9aa2b4; font-weight:600; cursor:pointer;
+    transition:all .25s ease;
+  }
+  .nav-link.active{
+    background:rgba(201,166,107,0.16); color:#f3f1ea; font-weight:800;
+    box-shadow:0 0 0 1px rgba(201,166,107,0.45), 0 0 18px rgba(201,166,107,0.5);
+    transform:translateY(-1px) scale(1.06);
+  }
+  .contato-btn{
+    padding:9px 20px; border-radius:999px;
+    background:linear-gradient(135deg, #e3cd9a, #c9a66b 60%, #8f6f34);
+    color:#0a0c10; font-weight:700; font-size:0.82rem; cursor:pointer;
+    border:1px solid rgba(255,255,255,0.3);
+    box-shadow:0 6px 18px rgba(201,166,107,0.3);
+  }
+  .contato-btn:hover{ color:#0a0c10; }
+  .entrar-btn{
+    padding:9px 18px; border-radius:999px;
+    border:1px solid rgba(201,166,107,0.45); background:rgba(201,166,107,0.08);
+    color:#e3cd9a; font-size:0.8rem; font-weight:600; cursor:pointer;
+    backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);
+  }
+  .entrar-btn:hover{ background:rgba(201,166,107,0.18); }
+
+  .hamburger{
+    display:none; flex-direction:column; gap:5px; width:38px; height:38px;
+    align-items:center; justify-content:center;
+    background:transparent; border:1px solid rgba(255,255,255,0.18); border-radius:10px; cursor:pointer;
+  }
+  .hamburger span{ display:block; width:18px; height:1.5px; background:#f3f1ea; }
+
+  .mobile-menu{
+    position:absolute; top:100%; left:0; right:0;
+    background:rgba(10,12,16,0.95);
+    backdrop-filter:blur(22px); -webkit-backdrop-filter:blur(22px);
+    border-bottom:1px solid rgba(255,255,255,0.1);
+    flex-direction:column; padding:18px max(20px, calc((100vw - 1240px)/2)); gap:10px;
+    display:none;
+  }
+  .mobile-menu.open{ display:flex; }
+  .mobile-menu .nav-link{ font-size:0.95rem; padding:9px 14px; border-radius:12px; }
+
+  @media(max-width:1120px){
+    .desktop-nav{ display:none; }
+    .hamburger{ display:flex; }
+  }
+
+  /* page switching */
+  .page{ display:none; }
+  .page.visible{ display:block; }
+</style>
+</head>
+<body>
+<div class="page-bg">
+
+<header>
+  <div class="brand" onclick="navigate('home', null)">
+    <div class="logo-wrap" id="logoWrap">
+      <img src="logo.png" alt="Robson Ramos">
+    </div>
+    <span class="brand-name">Robson Ramos</span>
+  </div>
+
+  <nav class="desktop-nav">
+    <ul>
+      <li><a class="nav-link" data-tab="home" onclick="navigate('home', null)">Home</a></li>
+      <li><a class="nav-link" data-tab="quem-somos" onclick="navigate('home', 'quem-somos')">Quem somos</a></li>
+      <li><a class="nav-link" data-tab="produtos" onclick="navigate('home', 'produtos')">Produtos</a></li>
+      <li><a class="nav-link" data-tab="servicos" onclick="navigate('servicos', null)">Serviços</a></li>
+      <li><a class="nav-link" data-tab="vagas" onclick="navigate('home', 'vagas')">Vagas de Emprego</a></li>
+      <li><a class="nav-link" data-tab="saber" onclick="navigate('home', 'saber')">Saber +</a></li>
+    </ul>
+    <a class="contato-btn" onclick="navigate('home', 'contato')">Contato</a>
+    <button class="entrar-btn" onclick="openModal(event)">Entrar</button>
+  </nav>
+
+  <button class="hamburger" aria-label="Menu" onclick="toggleNav()">
+    <span></span><span></span>
+  </button>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a class="nav-link" data-tab="home" onclick="navigate('home', null)">Home</a>
+    <a class="nav-link" data-tab="quem-somos" onclick="navigate('home', 'quem-somos')">Quem somos</a>
+    <a class="nav-link" data-tab="produtos" onclick="navigate('home', 'produtos')">Produtos</a>
+    <a class="nav-link" data-tab="servicos" onclick="navigate('servicos', null)">Serviços</a>
+    <a class="nav-link" data-tab="vagas" onclick="navigate('home', 'vagas')">Vagas de Emprego</a>
+    <a class="nav-link" data-tab="saber" onclick="navigate('home', 'saber')">Saber +</a>
+    <a class="nav-link" style="font-weight:700; color:#e3cd9a;" onclick="navigate('home', 'contato')">Contato</a>
+    <a class="nav-link" style="color:#e3cd9a;" onclick="openModal(event)">Entrar</a>
+  </div>
+</header>
+
+<!-- ==================== PÁGINA HOME ==================== -->
+<div class="page visible" id="page-home">
+
+<section id="home" style="padding:88px max(24px, calc((100vw - 1240px)/2)) 96px; display:flex; flex-wrap:wrap; gap:56px; align-items:center;">
+  <div style="flex:1 1 460px; min-width:300px; display:flex; flex-direction:column; gap:22px;">
+    <span class="eyebrow">RH · Seleção · Diversidade · Treinamentos</span>
+    <h1 class="serif" style="font-size:clamp(2.3rem,4.6vw,3.8rem); font-weight:600; line-height:1.12; margin:0; max-width:640px;">Decisões de pessoas com critério, não com achismo.</h1>
+    <p style="max-width:520px; color:#9aa2b4; font-size:1.02rem; line-height:1.65; margin:0;">18 anos conduzindo seleção estratégica, mapeamento de competências e desenvolvimento humano para empresas que não podem errar na escolha de quem entra — ou de quem lidera.</p>
+    <div style="display:flex; gap:14px; flex-wrap:wrap; margin-top:6px;">
+      <a class="gold-btn" onclick="navigate('home','produtos')">Conhecer produtos e serviços</a>
+      <a class="ghost-btn" onclick="navigate('home','contato')">Falar com Robson Ramos</a>
+    </div>
+  </div>
+
+  <div class="glass" style="flex:0 1 340px; min-width:260px; padding:34px 30px;">
+    <div class="serif" style="font-size:4.2rem; font-weight:600; color:#e3cd9a; line-height:1;">18</div>
+    <div style="color:#9aa2b4; font-size:0.92rem; margin-top:6px;">anos dedicados a recrutamento, seleção e desenvolvimento humano</div>
+    <div style="height:1px; background:rgba(255,255,255,0.12); margin:22px 0;"></div>
+    <div style="display:flex; flex-direction:column; gap:12px;">
+      <div style="display:flex; gap:10px; align-items:baseline; font-size:0.88rem;"><span style="color:#c9a66b;">—</span><span>Recrutamento &amp; Seleção estratégica</span></div>
+      <div style="display:flex; gap:10px; align-items:baseline; font-size:0.88rem;"><span style="color:#c9a66b;">—</span><span>Mapeamento de Competências</span></div>
+      <div style="display:flex; gap:10px; align-items:baseline; font-size:0.88rem;"><span style="color:#c9a66b;">—</span><span>Palestras &amp; Treinamentos</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="vitrine" style="padding:0 max(24px, calc((100vw - 1240px)/2)) 90px;">
+  <div class="glass" id="carouselBox" style="max-width:960px; margin:0 auto; padding:14px; border-radius:26px;">
+
+    <div style="position:relative; border-radius:18px; overflow:hidden; aspect-ratio:16/9;">
+      <div style="position:absolute; inset:0; background:#0d0f14;"></div>
+      <img class="c-slide" src="entrevista.jpg" alt="Entrevista de Seleção por Competências" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:1; z-index:2; transition:opacity 1.2s ease;">
+      <img class="c-slide" src="prazer-producao.jpg" alt="O Segredo entre o Prazer e o Realizar" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0; z-index:1; transition:opacity 1.2s ease;">
+      <img class="c-slide" src="paciente-poderoso.jpg" alt="Um Paciente Poderoso" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0; z-index:1; transition:opacity 1.2s ease;">
+      <img class="c-slide" src="mapeamento.jpg" alt="Mapeamento de Competências" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0; z-index:1; transition:opacity 1.2s ease;">
+      <img class="c-slide" src="assessment.jpg" alt="Assessment HaroRamos" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0; z-index:1; transition:opacity 1.2s ease;">
+
+      <button onclick="prevSlide()" aria-label="Anterior" style="position:absolute; top:50%; left:14px; transform:translateY(-50%); width:40px; height:40px; border-radius:50%; display:flex; align-items:center; justify-content:center; background:rgba(10,12,16,0.45); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); border:1px solid rgba(255,255,255,0.25); color:#fff; font-size:1.15rem; cursor:pointer; z-index:5;">‹</button>
+      <button onclick="nextSlide()" aria-label="Próximo" style="position:absolute; top:50%; right:14px; transform:translateY(-50%); width:40px; height:40px; border-radius:50%; display:flex; align-items:center; justify-content:center; background:rgba(10,12,16,0.45); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); border:1px solid rgba(255,255,255,0.25); color:#fff; font-size:1.15rem; cursor:pointer; z-index:5;">›</button>
+    </div>
+
+    <div style="display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; padding:18px 14px 8px;">
+      <div style="min-width:0;">
+        <span class="eyebrow" id="cEyebrow" style="letter-spacing:0.12em; font-size:0.68rem;">Curso online</span>
+        <div class="serif" id="cTitle" style="font-size:1.3rem; font-weight:600; margin-top:2px;">Entrevista de Seleção por Competências</div>
+      </div>
+      <a class="gold-btn" id="cLink" onclick="carouselGo()" style="flex:0 0 auto; padding:11px 22px; font-size:0.85rem;">Ver detalhes →</a>
+    </div>
+
+    <div style="height:2px; background:rgba(255,255,255,0.1); border-radius:2px; margin:10px 14px 4px; overflow:hidden;">
+      <div id="cProgress" style="height:100%; width:0%; background:linear-gradient(90deg,#c9a66b,#e3cd9a);"></div>
+    </div>
+
+    <div id="cDots" style="display:flex; gap:8px; justify-content:center; padding:10px 0 6px;"></div>
+  </div>
+</section>
+
+<section id="produtos" style="padding:60px max(24px, calc((100vw - 1240px)/2)) 110px;">
+  <div style="text-align:center; max-width:620px; margin:0 auto 46px;">
+    <span class="eyebrow">Produtos</span>
+    <h2 class="serif" style="font-size:clamp(1.9rem,3.2vw,2.6rem); font-weight:600; margin:10px 0 0;">Ferramentas para acelerar sua trajetória</h2>
+    <p style="color:#9aa2b4; margin-top:14px; line-height:1.6;">Cursos, conteúdo e sistemas construídos a partir de 18 anos de prática real em recrutamento, seleção e desenvolvimento de pessoas.</p>
+  </div>
+
+  <div style="display:flex; flex-direction:column; gap:28px; max-width:980px; margin:0 auto;">
+
+    <div id="produto-entrevista" class="glass" style="display:flex; flex-wrap:wrap-reverse; gap:30px; align-items:stretch; border-radius:24px; padding:34px;">
+      <div style="flex:1 1 380px; min-width:280px;">
+        <span class="eyebrow" style="letter-spacing:0.12em; font-size:0.7rem;">Curso online</span>
+        <h3 class="serif" style="font-size:1.7rem; font-weight:600; margin:8px 0 14px;">Entrevista de Seleção por Competências</h3>
+        <p style="color:#9aa2b4; line-height:1.65; font-size:0.92rem; margin:0 0 12px;">Você ainda entrevista no "feeling"? Então você ainda erra contratações — e a empresa está perdendo tempo e dinheiro.</p>
+        <p style="color:#9aa2b4; line-height:1.65; font-size:0.92rem; margin:0 0 12px;">Depois de 18 anos atuando com seleção, conduzindo processos de aprendiz até C-Level, aprendi uma coisa: contratar bem não é sorte, é método. É exatamente isso que ensino neste curso.</p>
+        <p style="color:#e5e7ec; font-size:0.9rem; font-weight:600; margin:0 0 8px;">Você vai aprender na prática:</p>
+        <div style="display:flex; flex-direction:column; gap:6px; margin-bottom:14px;">
+          <div style="display:flex; gap:8px; font-size:0.88rem; color:#9aa2b4;"><span style="color:#c9a66b;">✔</span><span>O que realmente são competências (sem teoria rasa)</span></div>
+          <div style="display:flex; gap:8px; font-size:0.88rem; color:#9aa2b4;"><span style="color:#c9a66b;">✔</span><span>Como mapear competências de forma estratégica</span></div>
+          <div style="display:flex; gap:8px; font-size:0.88rem; color:#9aa2b4;"><span style="color:#c9a66b;">✔</span><span>Como conduzir entrevistas estruturadas e assertivas</span></div>
+          <div style="display:flex; gap:8px; font-size:0.88rem; color:#9aa2b4;"><span style="color:#c9a66b;">✔</span><span>Estudo de caso real</span></div>
+          <div style="display:flex; gap:8px; font-size:0.88rem; color:#9aa2b4;"><span style="color:#c9a66b;">✔</span><span>Exercícios práticos</span></div>
+          <div style="display:flex; gap:8px; font-size:0.88rem; color:#9aa2b4;"><span style="color:#c9a66b;">✔</span><span>Simulação de entrevistas</span></div>
+        </div>
+        <p style="color:#9aa2b4; line-height:1.65; font-size:0.92rem; margin:0 0 20px;">Para profissionais de RH que querem se tornar estratégicos e para gestores que precisam contratar melhor.</p>
+        <a class="gold-btn" href="https://lnkd.in/d5DyxQdt" target="_blank" rel="noopener">Acessar curso →</a>
+      </div>
+      <div style="flex:0 1 300px; min-width:220px;">
+        <img src="entrevista.jpg" alt="Entrevista de Seleção por Competências" style="width:100%; height:100%; object-fit:cover; border-radius:16px;">
+      </div>
+    </div>
+
+    <div id="produto-prazer" class="glass" style="display:flex; flex-wrap:wrap-reverse; gap:30px; align-items:stretch; border-radius:24px; padding:34px;">
+      <div style="flex:1 1 380px; min-width:280px;">
+        <span class="eyebrow" style="letter-spacing:0.12em; font-size:0.7rem;">Curso online</span>
+        <h3 class="serif" style="font-size:1.7rem; font-weight:600; margin:8px 0 14px;">O Segredo entre o Prazer e o Realizar</h3>
+        <p style="color:#9aa2b4; line-height:1.65; font-size:0.92rem; margin:0 0 20px;">A neurociência te ajuda a entender a ligação entre o Prazer e o Realizar. Neste curso interativo você vai aprender a identificar e nomear suas emoções, sensações e sentimentos, explicado de forma didática e com profundidade.</p>
+        <a class="gold-btn" href="https://lnkd.in/dTNPPxtB" target="_blank" rel="noopener">Acessar curso →</a>
+      </div>
+      <div style="flex:0 1 300px; min-width:220px;">
+        <img src="prazer-producao.jpg" alt="O Segredo entre o Prazer e o Realizar" style="width:100%; height:100%; object-fit:cover; border-radius:16px;">
+      </div>
+    </div>
+
+    <div id="produto-livro" class="glass" style="display:flex; flex-wrap:wrap-reverse; gap:30px; align-items:stretch; border-radius:24px; padding:34px;">
+      <div style="flex:1 1 380px; min-width:280px;">
+        <span class="eyebrow" style="letter-spacing:0.12em; font-size:0.7rem;">Livro</span>
+        <h3 class="serif" style="font-size:1.7rem; font-weight:600; margin:8px 0 14px;">Um Paciente Poderoso</h3>
+        <p style="color:#9aa2b4; line-height:1.65; font-size:0.9rem; margin:0 0 12px;">E se os segredos mais antigos da humanidade não estivessem em livros sagrados, mas dentro da mente de um único paciente?</p>
+        <p style="color:#9aa2b4; line-height:1.65; font-size:0.9rem; margin:0 0 12px;">Hakol é grandioso, fascinante, repleto de poder e mistério — mas também marcado por fragilidades, contradições e dores íntimas. Léxis Lumen, terapeuta de escuta afiada e raciocínio investigativo, assume o papel de intérprete da alma, conduzindo sessões que se transformam em portais para a psicologia, a filosofia e as mitologias que moldaram civilizações inteiras.</p>
+        <p style="color:#9aa2b4; line-height:1.65; font-size:0.9rem; margin:0 0 12px;">Entre memórias que atravessam o Éden, a Babilônia e os mitos gregos e egípcios, e reflexões que desnudam os labirintos do ego humano, a linha entre história e delírio, mito e realidade, poder absoluto e fragilidade interior, se torna tênue demais para ser ignorada.</p>
+        <p style="color:#9aa2b4; line-height:1.65; font-size:0.9rem; margin:0 0 12px;">Mais do que uma narrativa, Um Paciente Poderoso é uma experiência que provoca o leitor a revisitar suas próprias crenças, sua identidade e a essência daquilo que chamamos de humanidade.</p>
+        <p style="color:#9aa2b4; line-height:1.65; font-size:0.9rem; margin:0 0 20px;">No fim, a pergunta inevitável se impõe: será que conhecemos de fato o universo — ou sequer a nós mesmos?</p>
+        <a class="gold-btn" onclick="navigate('home','contato')">Comprar "Um Paciente Poderoso" — Robson Ramos</a>
+      </div>
+      <div style="flex:0 1 300px; min-width:220px;">
+        <img src="paciente-poderoso.jpg" alt="Um Paciente Poderoso" style="width:100%; height:100%; object-fit:cover; border-radius:16px;">
+      </div>
+    </div>
+
+    <div id="produto-mapeamento" class="glass" style="display:flex; flex-wrap:wrap-reverse; gap:30px; align-items:stretch; border-radius:24px; padding:34px;">
+      <div style="flex:1 1 380px; min-width:280px;">
+        <span class="eyebrow" style="letter-spacing:0.12em; font-size:0.7rem;">Sistema</span>
+        <h3 class="serif" style="font-size:1.7rem; font-weight:600; margin:8px 0 14px;">Mapeamento de Competências</h3>
+        <p style="color:#9aa2b4; line-height:1.65; font-size:0.9rem; margin:0 0 12px;">Um Sistema de Mapeamento de Competências é uma solução estruturada para identificar, avaliar e analisar conhecimentos, habilidades, atitudes e características comportamentais de profissionais ou candidatos.</p>
+        <p style="color:#9aa2b4; line-height:1.65; font-size:0.9rem; margin:0 0 12px;">A partir de questionários, entrevistas, avaliações comportamentais, evidências profissionais e critérios previamente definidos, o sistema compara o perfil avaliado com as competências exigidas para determinado cargo, nível de liderança ou contexto organizacional.</p>
+        <p style="color:#9aa2b4; line-height:1.65; font-size:0.9rem; margin:0 0 12px;">Ao final do processo, é emitido um relatório individual contendo os principais pontos fortes, competências mais desenvolvidas, aspectos que precisam de aprimoramento, nível de aderência ao perfil esperado e recomendações para desenvolvimento, seleção, promoção, sucessão ou movimentação de carreira.</p>
+        <p style="color:#9aa2b4; line-height:1.65; font-size:0.9rem; margin:0 0 20px;">O sistema oferece uma visão mais objetiva e estratégica sobre o potencial profissional, apoiando decisões de gestão de pessoas com maior consistência, transparência e segurança.</p>
+        <a class="gold-btn" onclick="openModal(event)">Acessar sistema →</a>
+      </div>
+      <div style="flex:0 1 300px; min-width:220px;">
+        <img src="mapeamento.jpg" alt="Mapeamento de Competências" style="width:100%; height:100%; object-fit:cover; border-radius:16px;">
+      </div>
+    </div>
+
+    <div id="produto-assessment" class="glass" style="display:flex; flex-wrap:wrap-reverse; gap:30px; align-items:stretch; border-radius:24px; padding:34px;">
+      <div style="flex:1 1 380px; min-width:280px;">
+        <span class="eyebrow" style="letter-spacing:0.12em; font-size:0.7rem;">Serviço</span>
+        <h3 class="serif" style="font-size:1.7rem; font-weight:600; margin:8px 0 14px;">Assessment HaroRamos</h3>
+        <p style="color:#9aa2b4; line-height:1.65; font-size:0.9rem; margin:0 0 12px;">O Assessment HaroRamos é uma avaliação profissional voltada a pessoas que desejam ascender na carreira, compreender melhor seu potencial e tomar decisões mais estratégicas sobre seu futuro profissional.</p>
+        <p style="color:#9aa2b4; line-height:1.65; font-size:0.9rem; margin:0 0 12px;">Por meio de uma análise estruturada de competências, perfil comportamental, pontos fortes, oportunidades de desenvolvimento e objetivos de carreira, o profissional recebe um relatório psicológico completo, elaborado por psicólogo, com direcionamentos personalizados e próximos passos para evolução, reposicionamento, promoção ou transição de carreira.</p>
+        <p style="color:#9aa2b4; line-height:1.65; font-size:0.9rem; margin:0 0 20px;">Mais do que identificar características, o Assessment HaroRamos transforma autoconhecimento em um plano prático para alcançar sucesso, realização e crescimento profissional.</p>
+        <a class="gold-btn" href="https://wa.me/5511950604656" target="_blank" rel="noopener">Agendar assessment →</a>
+      </div>
+      <div style="flex:0 1 300px; min-width:220px;">
+        <img src="assessment.jpg" alt="Assessment HaroRamos" style="width:100%; height:100%; object-fit:cover; border-radius:16px;">
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="quem-somos" style="padding:60px max(24px, calc((100vw - 1240px)/2)) 110px; display:flex; flex-wrap:wrap-reverse; gap:56px; align-items:center;">
+  <div style="flex:1 1 420px; min-width:280px;">
+    <span class="eyebrow">Quem somos</span>
+    <h2 class="serif" style="font-size:clamp(1.9rem,3vw,2.5rem); font-weight:600; margin:14px 0 18px;">Robson Ramos</h2>
+    <p style="color:#9aa2b4; line-height:1.75; margin:0 0 14px;">18 anos de atuação em RH, com foco principal em recrutamento &amp; seleção, treinamento e diversidade — passagens por MetLife, Banco Safra, DPSP, Grupo DASA e Minerva Foods.</p>
+    <p style="color:#9aa2b4; line-height:1.75; margin:0 0 14px;">Formação em Biologia, Gestão de RH e Psicologia, com pós-graduação em Gestão de Pessoas, Neuropsicologia e Avaliação Psicológica aplicada à clínica. Autor do livro "Um Paciente Poderoso".</p>
+    <p style="color:#9aa2b4; line-height:1.75; margin:0 0 14px;">Mais de 1.000 horas de treinamentos e palestras, e mais de 8 mil pessoas contratadas até hoje.</p>
+    <p style="color:#9aa2b4; line-height:1.75; margin:0 0 16px;">Vivência pessoal como pessoa com deficiência visual subnormal, trazendo repertório real sobre inclusão, adaptações e acessibilidade para cada processo conduzido.</p>
+    <div style="display:flex; flex-wrap:wrap; gap:10px; margin-top:6px;">
+      <span class="glass-chip" style="color:#e3cd9a; font-weight:600; font-size:0.78rem;">Recrutamento &amp; Seleção</span>
+      <span class="glass-chip" style="color:#e3cd9a; font-weight:600; font-size:0.78rem;">Diversidade &amp; Inclusão</span>
+      <span class="glass-chip" style="color:#e3cd9a; font-weight:600; font-size:0.78rem;">Neuropsicologia</span>
+      <span class="glass-chip" style="color:#e3cd9a; font-weight:600; font-size:0.78rem;">Avaliação Psicológica</span>
+      <span class="glass-chip" style="color:#e3cd9a; font-weight:600; font-size:0.78rem;">Palestras Corporativas</span>
+    </div>
+    <a class="ghost-btn" href="https://www.linkedin.com/in/robson-ramos-887236a3/" target="_blank" rel="noopener" style="margin-top:22px;">Ver perfil no LinkedIn →</a>
+  </div>
+  <div style="flex:0 1 320px; min-width:220px;">
+    <div class="glass" style="padding:32px; display:flex; align-items:center; justify-content:center; border-radius:20px;">
+      <img src="logo-crest.jpg" alt="Ramos Consultoria" style="width:100%; max-width:260px; height:auto; border-radius:8px;">
+    </div>
+  </div>
+</section>
+
+<section id="vagas" style="padding:0 max(24px, calc((100vw - 1240px)/2)) 110px;">
+  <div class="glass" style="text-align:center; padding:52px 40px; max-width:780px; margin:0 auto;">
+    <span class="eyebrow">Vagas de Emprego</span>
+    <h2 class="serif" style="font-size:clamp(1.7rem,2.8vw,2.2rem); margin:14px 0 16px; font-weight:600;">Em breve, conectado ao sistema de seleção</h2>
+    <p style="color:#9aa2b4; line-height:1.7; max-width:540px; margin:0 auto 24px;">Esta área vai listar automaticamente as vagas em aberto assim que o sistema de mapeamento de competências estiver publicado — sem que você precise atualizar nada manualmente.</p>
+    <a class="gold-btn" onclick="navigate('home','contato')">Quero ser avisado</a>
+  </div>
+</section>
+
+<section id="saber" style="padding:0 max(24px, calc((100vw - 1240px)/2)) 110px;">
+  <div style="text-align:center; max-width:620px; margin:0 auto 40px;">
+    <span class="eyebrow">Saber +</span>
+    <h2 class="serif" style="font-size:clamp(1.9rem,3.2vw,2.6rem); font-weight:600; margin:10px 0 0;">Palestras e temas para reflexão</h2>
+    <p style="color:#9aa2b4; margin-top:14px; line-height:1.6;">Palestras para sua empresa, escola ou eventos — conteúdos aplicados à realidade organizacional e à agenda atual de gestão de pessoas.</p>
+  </div>
+  <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:16px;">
+    <div class="glass-card-outline" style="text-align:center;"><h4 style="font-size:0.98rem; font-weight:700; margin:0 0 8px;">NR-1 na prática</h4><p style="font-size:0.82rem; color:#9aa2b4; line-height:1.5; margin:0;">Saúde mental, riscos psicossociais e responsabilidade organizacional.</p></div>
+    <div class="glass-card-outline" style="text-align:center;"><h4 style="font-size:0.98rem; font-weight:700; margin:0 0 8px;">Sinais de Burnout</h4><p style="font-size:0.82rem; color:#9aa2b4; line-height:1.5; margin:0;">Fatores de risco, prevenção e papel da liderança.</p></div>
+    <div class="glass-card-outline" style="text-align:center;"><h4 style="font-size:0.98rem; font-weight:700; margin:0 0 8px;">IA a serviço do colaborador</h4><p style="font-size:0.82rem; color:#9aa2b4; line-height:1.5; margin:0;">Uso ético e estratégico da inteligência artificial no trabalho.</p></div>
+    <div class="glass-card-outline" style="text-align:center;"><h4 style="font-size:0.98rem; font-weight:700; margin:0 0 8px;">Inclusão de PcD</h4><p style="font-size:0.82rem; color:#9aa2b4; line-height:1.5; margin:0;">Acessibilidade, vieses inconscientes e cultura inclusiva.</p></div>
+    <div class="glass-card-outline" style="text-align:center;"><h4 style="font-size:0.98rem; font-weight:700; margin:0 0 8px;">Geração Z</h4><p style="font-size:0.82rem; color:#9aa2b4; line-height:1.5; margin:0;">Valores, expectativas e diálogo intergeracional.</p></div>
+    <div class="glass-card-outline" style="text-align:center;"><h4 style="font-size:0.98rem; font-weight:700; margin:0 0 8px;">Inteligência Emocional</h4><p style="font-size:0.82rem; color:#9aa2b4; line-height:1.5; margin:0;">Autoconsciência, autorregulação e empatia aplicada ao trabalho.</p></div>
+    <div class="glass-card-outline" style="text-align:center;"><h4 style="font-size:0.98rem; font-weight:700; margin:0 0 8px;">Depressão e prevenção ao suicídio</h4><p style="font-size:0.82rem; color:#9aa2b4; line-height:1.5; margin:0;">Sinais de alerta e caminhos de apoio.</p></div>
+    <div class="glass-card-outline" style="text-align:center;"><h4 style="font-size:0.98rem; font-weight:700; margin:0 0 8px;">Senso de Dono</h4><p style="font-size:0.82rem; color:#9aa2b4; line-height:1.5; margin:0;">Responsabilidade, autonomia e comprometimento.</p></div>
+  </div>
+</section>
+
+<section id="contato" style="padding:0 max(24px, calc((100vw - 1240px)/2)) 90px;">
+  <div class="glass" style="padding:52px; text-align:center; max-width:780px; margin:0 auto;">
+    <span class="eyebrow">Contato</span>
+    <h2 class="serif" style="font-size:clamp(1.8rem,3vw,2.4rem); font-weight:600; margin:14px 0 16px;">Vamos construir soluções com impacto?</h2>
+    <p style="color:#9aa2b4; max-width:500px; margin:0 auto 26px; line-height:1.7;">Seleção estratégica de talentos, palestras, treinamentos e consultoria com visão prática de RH, inclusão e desenvolvimento humano.</p>
+    <div style="display:flex; gap:14px; justify-content:center; flex-wrap:wrap;">
+      <a class="gold-btn" href="https://wa.me/5511950604656" target="_blank" rel="noopener">WhatsApp</a>
+      <a class="ghost-btn" href="mailto:rramosrh@gmail.com">rramosrh@gmail.com</a>
+      <a class="ghost-btn" href="https://www.linkedin.com/in/robson-ramos-887236a3/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+</section>
+
+</div><!-- /page-home -->
+
+<!-- ==================== PÁGINA SERVIÇOS ==================== -->
+<div class="page" id="page-servicos">
+<section id="servicos" style="padding:100px max(24px, calc((100vw - 1240px)/2)) 110px;">
+  <div style="text-align:center; max-width:680px; margin:0 auto 50px;">
+    <span class="eyebrow">Serviços</span>
+    <h2 class="serif" style="font-size:clamp(1.9rem,3.2vw,2.6rem); font-weight:600; margin:10px 0 0;">Soluções para cada etapa da sua trajetória</h2>
+    <p style="color:#9aa2b4; margin-top:14px; line-height:1.65;">Do primeiro ajuste no currículo à contratação de um executivo: cada serviço abaixo nasce de 18 anos de prática real em RH — e entrega resultado, não promessa.</p>
+  </div>
+
+  <div style="display:flex; flex-direction:column; gap:24px; max-width:900px; margin:0 auto 56px;">
+
+    <div class="glass" style="padding:34px;">
+      <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:16px; flex-wrap:wrap;">
+        <h3 class="serif" style="font-size:1.5rem; font-weight:600; margin:0;">Avaliação de Currículo</h3>
+        <span class="glass-chip" style="color:#e3cd9a; font-weight:700;">R$ 80,00</span>
+      </div>
+      <p style="color:#9aa2b4; line-height:1.7; font-size:0.94rem; margin:14px 0 0;">Seu currículo tem menos de 10 segundos para convencer um recrutador — e a maioria é descartada antes disso. Aqui você recebe uma análise técnica e estratégica feita por quem já triou milhares de currículos do outro lado da mesa: clareza, posicionamento profissional, coerência de trajetória e aderência real às vagas que você quer. Você sai sabendo exatamente o que corrigir para parar de ser ignorado.</p>
+    </div>
+
+    <div class="glass" style="padding:34px;">
+      <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:16px; flex-wrap:wrap;">
+        <h3 class="serif" style="font-size:1.5rem; font-weight:600; margin:0;">Avaliação de Perfil no LinkedIn</h3>
+        <span class="glass-chip" style="color:#e3cd9a; font-weight:700;">R$ 100,00</span>
+      </div>
+      <p style="color:#9aa2b4; line-height:1.7; font-size:0.94rem; margin:14px 0 0;">O LinkedIn é onde os recrutadores caçam — e se o seu perfil não aparece, você não existe para o mercado. Revisão completa de headline, resumo, experiências, palavras-chave e marca pessoal, feita por um recrutador que sabe exatamente o que os filtros de busca e os olhos humanos procuram. O objetivo é simples: transformar seu perfil em um ímã de oportunidades.</p>
+    </div>
+
+    <div class="glass" style="padding:34px;">
+      <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:16px; flex-wrap:wrap;">
+        <h3 class="serif" style="font-size:1.5rem; font-weight:600; margin:0;">Preparação para Entrevistas</h3>
+        <span class="glass-chip" style="color:#e3cd9a; font-weight:700;">R$ 260,00 / sessão (1h)</span>
+      </div>
+      <p style="color:#9aa2b4; line-height:1.7; font-size:0.94rem; margin:14px 0 0;">Chegar à entrevista é só metade do caminho — é nela que a vaga se ganha ou se perde. Acompanhamento estruturado com postura, comunicação, storytelling de carreira, respostas estratégicas e simulações práticas conduzidas por quem já entrevistou de aprendiz a C-Level. Você treina com quem contrata, e chega à entrevista real preparado, confiante e com as emoções sob controle. Acima de 3 sessões, 5% de desconto.</p>
+    </div>
+
+    <div class="glass" style="padding:34px;">
+      <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:16px; flex-wrap:wrap;">
+        <h3 class="serif" style="font-size:1.5rem; font-weight:600; margin:0;">Mapeamento de Competências</h3>
+        <span class="glass-chip" style="color:#e3cd9a; font-weight:700;">R$ 320,00</span>
+      </div>
+      <p style="color:#9aa2b4; line-height:1.7; font-size:0.94rem; margin:14px 0 0;">Você sabe, com precisão, quais são seus pontos fortes — e o que está travando sua evolução? Diagnóstico de competências técnicas e comportamentais aplicado em sistema especializado, com identificação clara dos seus diferenciais e direcionamento prático para o próximo passo da carreira. Chega de evoluir no escuro: aqui você enxerga o mapa completo.</p>
+    </div>
+
+    <div class="glass" style="padding:34px;">
+      <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:16px; flex-wrap:wrap;">
+        <h3 class="serif" style="font-size:1.5rem; font-weight:600; margin:0;">Aplicação de Assessment</h3>
+        <span class="glass-chip" style="color:#e3cd9a; font-weight:700;">R$ 600,00</span>
+      </div>
+      <p style="color:#9aa2b4; line-height:1.7; font-size:0.94rem; margin:14px 0 0;">O nível mais profundo de autoconhecimento profissional: mapeamento comportamental com teste aplicado via sistema especializado, seguido de entrevista técnica individual e emissão de laudo profissional detalhado, elaborado por psicólogo. É o instrumento que executivos e empresas sérias usam para decidir promoções, sucessões e contratações — agora ao seu alcance para decidir o rumo da sua própria carreira.</p>
+    </div>
+
+    <div class="glass" style="padding:34px; border-color:rgba(201,166,107,0.45);">
+      <span class="eyebrow" style="font-size:0.68rem;">Em destaque</span>
+      <h3 class="serif" style="font-size:1.5rem; font-weight:600; margin:8px 0 0;">Pareceres Diferenciados e Plano de Desenvolvimento</h3>
+      <p style="color:#9aa2b4; line-height:1.7; font-size:0.94rem; margin:14px 0 0;">Todo processo conduzido aqui entrega mais do que um resultado: entrega um parecer técnico-profissional completo, destacando pontos fortes, riscos de contratação e as competências que o profissional precisa desenvolver para evoluir em carreira e performance. É o diferencial que transforma uma avaliação em um plano de ação.</p>
+    </div>
+  </div>
+
+  <div style="text-align:center; max-width:680px; margin:0 auto 50px;">
+    <span class="eyebrow">Seleção Estratégica de Talentos</span>
+    <h2 class="serif" style="font-size:clamp(1.7rem,2.8vw,2.2rem); font-weight:600; margin:10px 0 0;">Para empresas que não podem errar na contratação</h2>
+    <p style="color:#9aa2b4; margin-top:14px; line-height:1.65;">Soluções completas em recrutamento, avaliação e movimentação interna — com prazo definido, garantia real e parecer especializado em cada entrega.</p>
+  </div>
+
+  <div style="display:flex; flex-direction:column; gap:24px; max-width:900px; margin:0 auto 56px;">
+
+    <div class="glass" style="padding:34px;">
+      <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:16px; flex-wrap:wrap;">
+        <h3 class="serif" style="font-size:1.5rem; font-weight:600; margin:0;">Posições Técnicas | Assistentes e Analistas</h3>
+        <span class="glass-chip" style="color:#e3cd9a; font-weight:700;">1x salário · garantia 3 meses</span>
+      </div>
+      <p style="color:#9aa2b4; line-height:1.7; font-size:0.94rem; margin:14px 0 0;">Condução completa de processos seletivos para posições operacionais e técnicas: mapeamento de perfil, triagem qualificada e entrevistas por competência — com apresentação de shortlist em até 7 dias úteis. Velocidade sem abrir mão de critério.</p>
+    </div>
+
+    <div class="glass" style="padding:34px;">
+      <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:16px; flex-wrap:wrap;">
+        <h3 class="serif" style="font-size:1.5rem; font-weight:600; margin:0;">Posições Especialistas</h3>
+        <span class="glass-chip" style="color:#e3cd9a; font-weight:700;">2x salário · garantia 3 meses</span>
+      </div>
+      <p style="color:#9aa2b4; line-height:1.7; font-size:0.94rem; margin:14px 0 0;">Seleção de profissionais com conhecimento técnico aprofundado, avaliando experiência, aderência cultural, capacidade analítica e potencial de entrega. Shortlist estruturada em até 10 dias úteis — para a vaga que não pode ficar aberta nem ser mal preenchida.</p>
+    </div>
+
+    <div class="glass" style="padding:34px;">
+      <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:16px; flex-wrap:wrap;">
+        <h3 class="serif" style="font-size:1.5rem; font-weight:600; margin:0;">Liderança | Coordenadores e Gerentes</h3>
+        <span class="glass-chip" style="color:#e3cd9a; font-weight:700;">15% sal. anual · garantia 120 dias</span>
+      </div>
+      <p style="color:#9aa2b4; line-height:1.7; font-size:0.94rem; margin:14px 0 0;">Um líder errado custa uma equipe inteira. Processos seletivos voltados à gestão de equipes e resultados, com entrevistas aprofundadas, análise comportamental, visão estratégica e parecer executivo. Apresentação de shortlist em até 25 dias úteis.</p>
+    </div>
+
+    <div class="glass" style="padding:34px;">
+      <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:16px; flex-wrap:wrap;">
+        <h3 class="serif" style="font-size:1.5rem; font-weight:600; margin:0;">Posições Executivas</h3>
+        <span class="glass-chip" style="color:#e3cd9a; font-weight:700;">20% sal. anual · garantia 180 dias</span>
+      </div>
+      <p style="color:#9aa2b4; line-height:1.7; font-size:0.94rem; margin:14px 0 0;">Atuação confidencial e estratégica na identificação de executivos, líderes seniores e posições críticas. Assessment consultivo, análise de mercado e shortlist em até 30 dias úteis — com a discrição e a profundidade que decisões desse nível exigem.</p>
+    </div>
+  </div>
+
+  <div style="text-align:center; max-width:680px; margin:0 auto 50px;">
+    <span class="eyebrow">Palestras para Empresas</span>
+    <h2 class="serif" style="font-size:clamp(1.7rem,2.8vw,2.2rem); font-weight:600; margin:10px 0 0;">Palestras para sua empresa, escola ou eventos</h2>
+    <p style="color:#9aa2b4; margin-top:14px; line-height:1.65;">Conteúdo vivido, não teoria de slide. R$ 400,00/hora — cada tema aplicado à realidade organizacional e à agenda atual de gestão de pessoas.</p>
+  </div>
+
+  <div style="display:flex; flex-direction:column; gap:24px; max-width:900px; margin:0 auto 56px;">
+
+    <div class="glass" style="padding:34px;">
+      <h3 class="serif" style="font-size:1.4rem; font-weight:600; margin:0;">NR-1 na prática</h3>
+      <p style="color:#9aa2b4; line-height:1.7; font-size:0.94rem; margin:12px 0 0;">A nova NR-1 deixou de ser papel: saúde mental e riscos psicossociais agora são responsabilidade legal da empresa. Esta palestra traduz a norma para o dia a dia da gestão de pessoas, mostrando o impacto direto na sustentabilidade do negócio — e o que sua liderança precisa fazer antes que o problema vire passivo.</p>
+    </div>
+
+    <div class="glass" style="padding:34px;">
+      <h3 class="serif" style="font-size:1.4rem; font-weight:600; margin:0;">Sinais de Burnout</h3>
+      <p style="color:#9aa2b4; line-height:1.7; font-size:0.94rem; margin:12px 0 0;">O burnout não avisa quando chega — mas dá sinais que quase ninguém sabe ler. Sinais de esgotamento, fatores de risco organizacionais e individuais, prevenção e o papel decisivo da liderança na construção de ambientes psicologicamente seguros. Sua equipe sai sabendo identificar, prevenir e agir.</p>
+    </div>
+
+    <div class="glass" style="padding:34px;">
+      <h3 class="serif" style="font-size:1.4rem; font-weight:600; margin:0;">IA a serviço do colaborador e da empresa</h3>
+      <p style="color:#9aa2b4; line-height:1.7; font-size:0.94rem; margin:12px 0 0;">A inteligência artificial não vai substituir sua equipe — mas quem souber usá-la vai substituir quem não sabe. Uso ético e estratégico da IA para otimizar processos, apoiar decisões e elevar a experiência do colaborador, com exemplos práticos e aplicáveis desde o dia seguinte.</p>
+    </div>
+
+    <div class="glass" style="padding:34px;">
+      <h3 class="serif" style="font-size:1.4rem; font-weight:600; margin:0;">Inclusão de Pessoas com Deficiência</h3>
+      <p style="color:#9aa2b4; line-height:1.7; font-size:0.94rem; margin:12px 0 0;">Sensibilização corporativa sobre acessibilidade, vieses inconscientes, adaptações razoáveis e cultura inclusiva — conduzida por quem vive a deficiência visual na prática e transformou essa vivência em repertório profissional. Não é discurso: é experiência real que muda a forma como sua equipe enxerga inclusão.</p>
+    </div>
+
+    <div class="glass" style="padding:34px;">
+      <h3 class="serif" style="font-size:1.4rem; font-weight:600; margin:0;">Senso de Dono</h3>
+      <p style="color:#9aa2b4; line-height:1.7; font-size:0.94rem; margin:12px 0 0;">Por que algumas pessoas entregam e outras apenas cumprem horário? Reflexão prática sobre responsabilidade, autonomia, comprometimento e alinhamento entre expectativas e entregas — o convite que faz cada colaborador tratar o resultado como se fosse seu.</p>
+    </div>
+  </div>
+
+  <div style="text-align:center; max-width:680px; margin:0 auto 50px;">
+    <span class="eyebrow">Palestras para Todos os Públicos</span>
+    <h2 class="serif" style="font-size:clamp(1.7rem,2.8vw,2.2rem); font-weight:600; margin:10px 0 0;">Temas humanos, atuais e de alto impacto</h2>
+    <p style="color:#9aa2b4; margin-top:14px; line-height:1.65;">Para empresas, escolas e eventos — reflexão e desenvolvimento que tocam a vida real das pessoas.</p>
+  </div>
+
+  <div style="display:flex; flex-direction:column; gap:24px; max-width:900px; margin:0 auto 56px;">
+
+    <div class="glass" style="padding:34px;">
+      <h3 class="serif" style="font-size:1.4rem; font-weight:600; margin:0;">Depressão e prevenção ao suicídio</h3>
+      <p style="color:#9aa2b4; line-height:1.7; font-size:0.94rem; margin:12px 0 0;">Um tema que ninguém quer falar — e que por isso mesmo precisa ser falado, com responsabilidade e cuidado. Conscientização, identificação de sinais de alerta, quebra de estigmas e orientação sobre apoio e busca de ajuda, conduzido com a seriedade de quem une psicologia e vivência.</p>
+    </div>
+
+    <div class="glass" style="padding:34px;">
+      <h3 class="serif" style="font-size:1.4rem; font-weight:600; margin:0;">Geração Z</h3>
+      <p style="color:#9aa2b4; line-height:1.7; font-size:0.94rem; margin:12px 0 0;">Eles já são o futuro da sua empresa — e a maioria dos líderes ainda não sabe conversar com eles. Compreensão de valores, expectativas e desafios da nova geração para fortalecer o diálogo intergeracional e reter talentos que pensam diferente.</p>
+    </div>
+
+    <div class="glass" style="padding:34px;">
+      <h3 class="serif" style="font-size:1.4rem; font-weight:600; margin:0;">A fuga para os vícios</h3>
+      <p style="color:#9aa2b4; line-height:1.7; font-size:0.94rem; margin:12px 0 0;">Por trás de todo comportamento aditivo existe uma dor tentando ser silenciada. Discussão franca sobre comportamentos aditivos, fatores emocionais envolvidos e caminhos possíveis para mudança e recuperação — sem julgamento, com ciência e humanidade.</p>
+    </div>
+
+    <div class="glass" style="padding:34px;">
+      <h3 class="serif" style="font-size:1.4rem; font-weight:600; margin:0;">Inteligência Emocional</h3>
+      <p style="color:#9aa2b4; line-height:1.7; font-size:0.94rem; margin:12px 0 0;">A competência mais exigida do século — e a menos ensinada. Desenvolvimento de autoconsciência, autorregulação, empatia e habilidades sociais aplicadas à vida e ao trabalho, com base em neurociência e exemplos que qualquer pessoa reconhece no próprio dia a dia.</p>
+    </div>
+
+    <div class="glass" style="padding:34px;">
+      <h3 class="serif" style="font-size:1.4rem; font-weight:600; margin:0;">Aprendendo com o passado</h3>
+      <p style="color:#9aa2b4; line-height:1.7; font-size:0.94rem; margin:12px 0 0;">Seus erros podem ser seu maior professor — ou seu maior peso. A escolha é sua. Reflexões sobre experiências, erros, resiliência e crescimento pessoal como ferramenta de evolução, para transformar história vivida em combustível para o que vem.</p>
+    </div>
+  </div>
+
+  <div style="text-align:center; max-width:680px; margin:0 auto 50px;">
+    <span class="eyebrow">Treinamentos</span>
+    <h2 class="serif" style="font-size:clamp(1.7rem,2.8vw,2.2rem); font-weight:600; margin:10px 0 0;">Capacitações com aplicação prática</h2>
+    <p style="color:#9aa2b4; margin-top:14px; line-height:1.65;">R$ 750,00/hora com materiais inclusos — foco em comportamento, processo e resultado. Sua equipe não assiste: pratica.</p>
+  </div>
+
+  <div style="display:flex; flex-direction:column; gap:24px; max-width:900px; margin:0 auto 56px;">
+
+    <div class="glass" style="padding:34px;">
+      <h3 class="serif" style="font-size:1.4rem; font-weight:600; margin:0;">Inclusão em todos os ambientes</h3>
+      <p style="color:#9aa2b4; line-height:1.7; font-size:0.94rem; margin:12px 0 0;">Treinamento prático para empresas e equipes sobre inclusão, diversidade, acessibilidade e respeito às diferenças — com dinâmicas reais e a autoridade de quem vive o tema na pele. Sua equipe sai sabendo agir, não apenas concordar.</p>
+    </div>
+
+    <div class="glass" style="padding:34px;">
+      <h3 class="serif" style="font-size:1.4rem; font-weight:600; margin:0;">Processo seletivo eficiente</h3>
+      <p style="color:#9aa2b4; line-height:1.7; font-size:0.94rem; margin:12px 0 0;">Quanto custa uma contratação errada na sua empresa? Estruturação de processos seletivos assertivos, redução de vieses e decisões baseadas em critérios claros — o método de quem já contratou mais de 8 mil pessoas, entregue à sua equipe de RH.</p>
+    </div>
+
+    <div class="glass" style="padding:34px;">
+      <h3 class="serif" style="font-size:1.4rem; font-weight:600; margin:0;">Entrevistas por competência</h3>
+      <p style="color:#9aa2b4; line-height:1.7; font-size:0.94rem; margin:12px 0 0;">Chega de contratar no "feeling". Técnicas de investigação, análise de evidências e avaliação consistente de candidatos — o treinamento que transforma entrevistadores em avaliadores estratégicos, com prática e simulação real.</p>
+    </div>
+
+    <div class="glass" style="padding:34px;">
+      <h3 class="serif" style="font-size:1.4rem; font-weight:600; margin:0;">Treinamento para profissionais PcD</h3>
+      <p style="color:#9aa2b4; line-height:1.7; font-size:0.94rem; margin:12px 0 0;">Preparação para o mercado de trabalho com foco em carreira, autoconfiança, comunicação e protagonismo — conduzida por quem percorreu esse caminho e chegou à liderança em grandes empresas. Inspiração com método, não apenas motivação.</p>
+    </div>
+
+    <div class="glass" style="padding:34px;">
+      <h3 class="serif" style="font-size:1.4rem; font-weight:600; margin:0;">Eficiência usando inteligência emocional</h3>
+      <p style="color:#9aa2b4; line-height:1.7; font-size:0.94rem; margin:12px 0 0;">Autocontrole emocional, tomada de decisão consciente e gestão das relações para aumentar foco, produtividade e qualidade das entregas. Porque equipe emocionalmente inteligente entrega mais, com menos desgaste.</p>
+    </div>
+  </div>
+
+  <div class="glass" style="max-width:900px; margin:0 auto 40px; text-align:center; padding:36px;">
+    <h3 class="serif" style="font-size:1.4rem; font-weight:600; margin:0 0 10px;">Negocie diretamente comigo</h3>
+    <p style="color:#9aa2b4; font-size:0.92rem; line-height:1.6; margin:0 0 22px;">Fale direto pelo WhatsApp para tirar dúvidas, fechar um serviço ou montar um pacote sob medida.</p>
+    <a class="gold-btn" href="https://wa.me/5511950604656" target="_blank" rel="noopener">WhatsApp · 11 95060-4656</a>
+  </div>
+
+  <div class="glass" style="max-width:900px; margin:0 auto; padding:36px;">
+    <h3 class="serif" style="font-size:1.5rem; font-weight:600; text-align:center; margin:0 0 24px;">Pacotes de Serviços de RH</h3>
+    <div style="display:grid; grid-template-columns:1fr auto; column-gap:18px; align-items:baseline; padding:10px 0; border-bottom:1px solid rgba(255,255,255,0.08); font-size:0.86rem;"><span>Avaliação de Currículo + LinkedIn</span><span style="color:#e3cd9a; font-weight:700;">R$ 150,00</span></div>
+    <div style="display:grid; grid-template-columns:1fr auto; column-gap:18px; align-items:baseline; padding:10px 0; border-bottom:1px solid rgba(255,255,255,0.08); font-size:0.86rem;"><span>Currículo + LinkedIn + 2 sessões de preparação para entrevistas</span><span style="color:#e3cd9a; font-weight:700;">R$ 600,00</span></div>
+    <div style="display:grid; grid-template-columns:1fr auto; column-gap:18px; align-items:baseline; padding:10px 0; border-bottom:1px solid rgba(255,255,255,0.08); font-size:0.86rem;"><span>Currículo + LinkedIn + 3 sessões + busca de 5 vagas coerentes com o perfil</span><span style="color:#e3cd9a; font-weight:700;">R$ 1.000,00</span></div>
+    <div style="display:grid; grid-template-columns:1fr auto; column-gap:18px; align-items:baseline; padding:10px 0; border-bottom:1px solid rgba(255,255,255,0.08); font-size:0.86rem;"><span>Currículo + LinkedIn + 5 sessões + Mapeamento de Competências + busca de 5 vagas</span><span style="color:#e3cd9a; font-weight:700;">R$ 1.600,00</span></div>
+    <div style="display:grid; grid-template-columns:1fr auto; column-gap:18px; align-items:baseline; padding:10px 0; font-size:0.86rem;"><span>Mapeamento de Competências + busca de 5 vagas coerentes com o perfil</span><span style="color:#e3cd9a; font-weight:700;">R$ 2.200,00</span></div>
+  </div>
+</section>
+</div><!-- /page-servicos -->
+
+<footer style="padding:32px max(24px, calc((100vw - 1240px)/2)); text-align:center; color:#7d869a; font-size:0.8rem; border-top:1px solid rgba(255,255,255,0.08);">
+  Robson Ramos — Consultoria em RH, Seleção &amp; Desenvolvimento · 11 95060-4656 · rramosrh@gmail.com
+</footer>
+
+<div id="modal" style="position:fixed; inset:0; z-index:500; background:rgba(6,8,12,0.7); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); align-items:center; justify-content:center; display:none;">
+  <div class="glass" style="width:min(380px,90vw); padding:32px; text-align:center; border-radius:20px;">
+    <h3 class="serif" style="font-size:1.4rem; margin:0 0 12px;">Área restrita</h3>
+    <p style="color:#9aa2b4; font-size:0.9rem; line-height:1.6; margin:0 0 20px;">Login de administrador e de clientes em implementação — vai abrir seu painel para publicar produtos e serviços, e a área personalizada de cada cliente.</p>
+    <button onclick="closeModal()" style="background:none; border:none; color:#9aa2b4; font-size:0.82rem; cursor:pointer;">Fechar</button>
+  </div>
+</div>
+
+</div><!-- /page-bg -->
+
+<script>
+/* ============ ESTADO E NAVEGAÇÃO ============ */
+var currentPage = 'home';
+var sectionIds = ['home','quem-somos','produtos','vagas','saber','contato'];
+
+function setActiveTab(id){
+  document.querySelectorAll('.nav-link').forEach(function(el){
+    el.classList.toggle('active', el.getAttribute('data-tab') === id);
+  });
+}
+
+function navigate(page, anchorId){
+  var changing = currentPage !== page;
+  currentPage = page;
+  document.getElementById('page-home').classList.toggle('visible', page === 'home');
+  document.getElementById('page-servicos').classList.toggle('visible', page === 'servicos');
+  document.getElementById('mobileMenu').classList.remove('open');
+  setActiveTab(page === 'servicos' ? 'servicos' : (anchorId || 'home'));
+
+  setTimeout(function(){
+    if(anchorId && page === 'home'){
+      var el = document.getElementById(anchorId);
+      if(el){
+        var top = el.getBoundingClientRect().top + window.scrollY - 80;
+        window.scrollTo({ top: top, behavior: 'smooth' });
+      }
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }, changing ? 60 : 0);
+}
+
+/* scroll-spy: destaca a aba conforme a rolagem na Home */
+var ticking = false;
+window.addEventListener('scroll', function(){
+  if(ticking) return;
+  ticking = true;
+  requestAnimationFrame(function(){
+    ticking = false;
+    if(currentPage !== 'home') return;
+    var best = sectionIds[0];
+    for(var i=0;i<sectionIds.length;i++){
+      var el = document.getElementById(sectionIds[i]);
+      if(el && el.getBoundingClientRect().top - 140 <= 0) best = sectionIds[i];
+    }
+    setActiveTab(best);
+  });
+}, { passive:true });
+
+function toggleNav(){
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+
+/* ============ MODAL ============ */
+function openModal(e){
+  if(e) e.preventDefault();
+  document.getElementById('modal').style.display = 'flex';
+  document.getElementById('mobileMenu').classList.remove('open');
+}
+function closeModal(){
+  document.getElementById('modal').style.display = 'none';
+}
+document.getElementById('modal').addEventListener('click', function(e){
+  if(e.target === this) closeModal();
+});
+
+/* ============ BRILHOS DOURADOS NO LOGO ============ */
+(function(){
+  var wrap = document.getElementById('logoWrap');
+  var count = 6;
+  for(var i=0;i<count;i++){
+    var s = document.createElement('div');
+    s.className = 'sparkle';
+    var size = 3 + Math.random()*3;
+    s.style.width = size+'px';
+    s.style.height = size+'px';
+    var angle = (i/count) * Math.PI * 2;
+    var radius = 21;
+    s.style.left = (23 + Math.cos(angle)*radius - size/2) + 'px';
+    s.style.top  = (23 + Math.sin(angle)*radius - size/2) + 'px';
+    s.style.animationDelay = (Math.random()*2.6)+'s';
+    wrap.appendChild(s);
+  }
+})();
+
+/* ============ CARROSSEL ============ */
+var slidesData = [
+  { eyebrow:'Curso online', title:'Entrevista de Seleção por Competências', anchor:'produto-entrevista' },
+  { eyebrow:'Curso online', title:'O Segredo entre o Prazer e o Realizar', anchor:'produto-prazer' },
+  { eyebrow:'Livro', title:'Um Paciente Poderoso', anchor:'produto-livro' },
+  { eyebrow:'Sistema', title:'Mapeamento de Competências', anchor:'produto-mapeamento' },
+  { eyebrow:'Serviço', title:'Assessment HaroRamos', anchor:'produto-assessment' }
+];
+var current = 0;
+var paused = false;
+var DURATION = 5000;
+var timer = null;
+var slideEls = document.querySelectorAll('.c-slide');
+var dotsWrap = document.getElementById('cDots');
+var progressEl = document.getElementById('cProgress');
+
+slidesData.forEach(function(_, i){
+  var b = document.createElement('button');
+  b.setAttribute('aria-label','Slide '+(i+1));
+  b.style.cssText = 'height:8px; border-radius:6px; border:1px solid rgba(255,255,255,0.35); background:transparent; cursor:pointer; transition:all .25s ease; padding:0;';
+  b.onclick = (function(idx){ return function(){ goToSlide(idx); }; })(i);
+  dotsWrap.appendChild(b);
+});
+
+function renderCarousel(){
+  slideEls.forEach(function(img, i){
+    img.style.opacity = (i === current) ? 1 : 0;
+    img.style.zIndex = (i === current) ? 2 : 1;
+    img.style.animation = (i === current) ? 'rr-kenburns '+(DURATION/1000+1.5)+'s ease-in-out forwards' : 'none';
+  });
+  var d = slidesData[current];
+  document.getElementById('cEyebrow').textContent = d.eyebrow;
+  document.getElementById('cTitle').textContent = d.title;
+  Array.prototype.forEach.call(dotsWrap.children, function(dot, i){
+    dot.style.width = (i === current) ? '24px' : '8px';
+    dot.style.background = (i === current) ? '#c9a66b' : 'transparent';
+    dot.style.borderColor = (i === current) ? '#c9a66b' : 'rgba(255,255,255,0.35)';
+  });
+  restartProgress();
+}
+
+function restartProgress(){
+  progressEl.style.animation = 'none';
+  void progressEl.offsetWidth;
+  progressEl.style.animation = 'rr-progress '+DURATION+'ms linear forwards';
+  progressEl.style.animationPlayState = paused ? 'paused' : 'running';
+}
+
+function startAutoplay(){
+  clearInterval(timer);
+  timer = setInterval(function(){
+    if(!paused) advance(1);
+  }, DURATION);
+}
+
+function advance(dir){
+  current = (current + dir + slidesData.length) % slidesData.length;
+  renderCarousel();
+}
+function goToSlide(i){ current = i; renderCarousel(); startAutoplay(); }
+function nextSlide(){ advance(1); startAutoplay(); }
+function prevSlide(){ advance(-1); startAutoplay(); }
+function carouselGo(){ navigate('home', slidesData[current].anchor); }
+
+var box = document.getElementById('carouselBox');
+box.addEventListener('mouseenter', function(){ paused = true; progressEl.style.animationPlayState = 'paused'; });
+box.addEventListener('mouseleave', function(){ paused = false; progressEl.style.animationPlayState = 'running'; });
+
+setActiveTab('home');
+renderCarousel();
+startAutoplay();
+</script>
+</body>
+</html>
